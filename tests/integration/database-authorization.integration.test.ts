@@ -116,7 +116,7 @@ async function seedAuthorizationModel(): Promise<void> {
   await administrativePool.query(
     `insert into membership_role_assignments
       (id, organization_id, membership_id, role_id, assigned_at)
-     values ($1,$2,$3,$4,$8), ($5,$6,$7,$9,$8)`,
+     values ($1,$2,$3,$4,$9), ($5,$6,$7,$8,$9)`,
     [
       ASSIGNMENT_A,
       ORGANIZATION_A,
