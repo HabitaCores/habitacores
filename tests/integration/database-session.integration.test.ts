@@ -44,11 +44,11 @@ async function runtimeQuery(text: string, values: readonly unknown[]) {
   }
 }
 
-function session(digest: string): PersistedSession {
+function session(digest: string, userId: PersistedSession['userId'] = USER_ID): PersistedSession {
   return {
     kind: 'habitacores-authenticated-session',
     id: ids.createSessionId(),
-    userId: USER_ID,
+    userId,
     lookupDigest: digest as PersistedSession['lookupDigest'],
     status: 'active',
     authenticationMethod: 'oauth',
@@ -184,9 +184,9 @@ describe('session and MFA database foundation', () => {
     await runtimeQuery(
       `insert into totp_enrollments (id,user_id,status,secret_ciphertext,secret_key_version,created_at)
        values ($1,$2,'pending','ciphertext:v1',1,$3)`,
-      [enrollment, USER_ID, createdAt],
+      [enrollment, secondUser, createdAt],
     );
-    const linkedSession = session('sha256:challenge');
+    const linkedSession = session('sha256:challenge', secondUser);
     await sessions.createSession(linkedSession);
     const insert = `insert into mfa_challenges
       (id,user_id,session_id,enrollment_id,challenge_type,status,created_at,expires_at,attempt_count,maximum_attempts)
@@ -194,7 +194,7 @@ describe('session and MFA database foundation', () => {
     await expect(
       runtimeQuery(insert, [
         ids.createMfaChallengeId(),
-        USER_ID,
+        secondUser,
         linkedSession.id,
         enrollment,
         createdAt,
@@ -205,7 +205,7 @@ describe('session and MFA database foundation', () => {
     await expect(
       runtimeQuery(insert, [
         ids.createMfaChallengeId(),
-        USER_ID,
+        secondUser,
         linkedSession.id,
         enrollment,
         createdAt,
@@ -216,7 +216,7 @@ describe('session and MFA database foundation', () => {
     await expect(
       runtimeQuery(insert, [
         ids.createMfaChallengeId(),
-        secondUser,
+        USER_ID,
         linkedSession.id,
         enrollment,
         createdAt,

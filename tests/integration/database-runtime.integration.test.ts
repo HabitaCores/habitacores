@@ -18,18 +18,22 @@ import {
 } from '../../packages/database/src/testing/isolated-database.js';
 
 const EXPECTED_TABLES = [
+  'authentication_sessions',
   'blocks',
   'buildings',
   'communities',
   'external_identity_links',
   'floors',
   'membership_role_assignments',
+  'mfa_challenges',
+  'mfa_recovery_codes',
   'organization_memberships',
   'organizations',
   'permissions',
   'properties',
   'role_permissions',
   'roles',
+  'totp_enrollments',
   'units',
   'users',
 ];
