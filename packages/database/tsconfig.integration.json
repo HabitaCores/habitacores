@@ -12,5 +12,5 @@
     "rootDir": "../..",
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "../../tests/integration/database-runtime.integration.test.ts"]
+  "include": ["src/**/*.ts", "../../tests/integration/**/*.ts"]
 }
