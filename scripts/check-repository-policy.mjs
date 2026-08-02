@@ -45,8 +45,14 @@ const requiredFiles = [
   '.github/CODEOWNERS',
   '.github/pull_request_template.md',
   'package.json',
+  'packages/config/package.json',
+  'packages/config/tsconfig/base.json',
+  'packages/config/tsconfig/nextjs.json',
+  'packages/config/tsconfig/node-library.json',
+  'packages/config/tsconfig/react-library.json',
   'pnpm-lock.yaml',
   'pnpm-workspace.yaml',
+  'scripts/check-workspace-boundaries.mjs',
   'turbo.json',
 ];
 
