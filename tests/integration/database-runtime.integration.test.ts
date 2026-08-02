@@ -21,10 +21,12 @@ const EXPECTED_TABLES = [
   'blocks',
   'buildings',
   'communities',
+  'external_identity_links',
   'floors',
   'organizations',
   'properties',
   'units',
+  'users',
 ];
 const VALID_ORGANIZATION_ID = '01890f47-6c8a-7c3d-8a21-9b7c1d2e3f40';
 const SECOND_ORGANIZATION_ID = '01890f47-6c8a-7c3d-8a21-9b7c1d2e3f41';

@@ -15,6 +15,13 @@
       "when": 1785694311528,
       "tag": "0001_organization_rls",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785700404052,
+      "tag": "0002_authentication_identity",
+      "breakpoints": true
     }
   ]
 }

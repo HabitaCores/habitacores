@@ -12,6 +12,7 @@ const PROTECTED_TABLES = [
   'floors',
   'units',
 ] as const;
+const IDENTITY_TABLES = ['users', 'external_identity_links'] as const;
 
 export function createRuntimeTestDatabaseUrl(administrativeDatabaseUrl: string): string {
   const url = new URL(administrativeDatabaseUrl);
@@ -43,6 +44,9 @@ export async function provisionRuntimeTestRole(administrativePool: Pool): Promis
   );
   await administrativePool.query(
     `grant select, insert, update, delete on table ${PROTECTED_TABLES.join(', ')} to ${RUNTIME_TEST_ROLE}`,
+  );
+  await administrativePool.query(
+    `grant select, insert, update, delete on table ${IDENTITY_TABLES.join(', ')} to ${RUNTIME_TEST_ROLE}`,
   );
 }
 
