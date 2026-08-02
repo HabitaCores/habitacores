@@ -31,6 +31,7 @@
     "clean": "rm -rf dist",
     "db:check": "drizzle-kit check --config=drizzle.config.ts",
     "db:auth:check": "node ../../scripts/check-auth-migration.mjs",
+    "authorization:policy:check": "node ../../scripts/check-authorization-migration.mjs",
     "db:rls:check": "node ../../scripts/check-rls-migration.mjs",
     "db:generate": "drizzle-kit generate --config=drizzle.config.ts --name=initial_tenancy",
     "db:migrate:test": "tsx scripts/migrate-test-database.ts",

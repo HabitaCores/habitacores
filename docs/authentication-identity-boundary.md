@@ -4,8 +4,9 @@
 
 The provider-neutral authentication boundary, Habitacores user model, identity resolver, and global
 identity tables are **implemented**. Supabase Auth is the **approved** external identity provider,
-but it is not connected or configured by this repository. Sessions, cookies, MFA, OAuth routes,
-memberships, roles, permissions, and organization authorization remain **deferred**.
+but it is not connected or configured by this repository. Sessions, cookies, MFA, and OAuth routes
+remain **deferred**. Organization authorization is
+**implemented separately** as documented in `organization-authorization.md`.
 
 Supabase will verify external credentials and return a trusted provider subject. Habitacores owns
 the independent `UserId`, user lifecycle, profile authority, identity links, and future authorization
@@ -33,8 +34,8 @@ preferred profile fields.
 
 `AuthenticatedIdentity` contains no organization assignment or PostgreSQL tenant context.
 Authentication success does not establish access to any organization. Membership and permission
-evaluation will be implemented separately before trusted application code may set an organization
-context.
+evaluation is implemented separately and must succeed before trusted application code may set an
+organization context.
 
 ## Database Security Boundary
 
@@ -64,6 +65,6 @@ credentials and does not silently skip.
 ## Known Limitations
 
 This package does not issue sessions, verify production tokens, connect to Supabase, enroll MFA,
-authorize organizations, or provide account recovery. Provider configuration, key rotation,
+authorize organizations by itself, or provide account recovery. Provider configuration, key rotation,
 production runtime-role provisioning, operational monitoring, audit events, and privacy workflows
 remain **deferred**. The implemented identity model is not a claim of complete authentication.

@@ -76,6 +76,9 @@ jobs:
       - name: Validate authentication identity migration
         run: pnpm db:auth:check
 
+      - name: Validate authorization migration and policies
+        run: pnpm authorization:policy:check
+
       - name: Check formatting
         run: pnpm format:check
 
@@ -95,6 +98,11 @@ jobs:
 
       - name: Run PostgreSQL row-level security tests
         run: pnpm test:rls
+        env:
+          TEST_DATABASE_URL: postgresql://habitacores_test:habitacores_test@127.0.0.1:5432/habitacores_integration_test
+
+      - name: Run organization authorization tests
+        run: pnpm test:authorization
         env:
           TEST_DATABASE_URL: postgresql://habitacores_test:habitacores_test@127.0.0.1:5432/habitacores_integration_test
 

@@ -4,8 +4,10 @@
 
 Database-level organization isolation for the current tenancy hierarchy is **implemented** by
 `0001_organization_rls.sql`. It protects `organizations`, `properties`, `communities`, `buildings`,
-`blocks`, `floors`, and `units`. Authentication, memberships, application permissions, audit events,
-and production role provisioning remain **deferred**.
+`blocks`, `floors`, and `units`. `0003_organization_authorization.sql` additionally protects
+organization memberships, roles, membership-role assignments, and role-derived permission grants.
+Global users, identity links, and permission reference data intentionally do not use organization
+equality policies. Audit events and production role provisioning remain **deferred**.
 
 ## Tenant-Context Contract
 
@@ -16,8 +18,8 @@ validated UUIDv7 organization identifier before querying protected data. Postgre
 errors on malformed values. Missing context therefore exposes no rows and permits no protected
 write. Commit, rollback, and pooled connection reuse clear the effective context.
 
-Organization context is **not authorization**. A future application authorization layer must decide
-whether an authenticated actor may establish a particular context.
+Organization context is **not authorization**. The implemented application authorization layer must
+decide whether an authenticated user may establish a particular context.
 
 ## Policy Matrix
 

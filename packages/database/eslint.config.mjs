@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   {
-    ignores: ['dist/**'],
+    ignores: ['dist/**', 'tests/integration/database-authorization.integration.test.ts'],
   },
   js.configs.recommended,
   tseslint.configs.recommended,

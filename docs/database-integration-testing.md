@@ -3,9 +3,10 @@
 ## Status and Scope
 
 The database runtime, isolated-test harness, organization-scoped PostgreSQL RLS policies, and global
-authentication identity schema tests are **implemented**. Production authentication, application
-authorization decisions, production connectivity, and production migration execution remain
-**deferred**. No production connection is configured by this repository.
+authentication identity schema tests, and organization authorization tests are **implemented**.
+Production authentication, production authorization-query authority, production connectivity, and
+production migration execution remain **deferred**. No production connection is configured by this
+repository.
 
 ## Local Prerequisites
 
@@ -23,13 +24,15 @@ export TEST_DATABASE_URL='postgresql://habitacores_test:habitacores_test@127.0.0
 pnpm db:migrate:test
 pnpm test:integration
 pnpm test:rls
+pnpm test:authorization
 ```
 
 The command fails clearly when `TEST_DATABASE_URL` is absent or unsafe; tests are never silently
 skipped. CI uses a disposable `postgres:18-alpine` service, fake CI-only credentials, and a health
 check. The integration command covers the database runtime and authentication identity repository;
-the RLS command separately re-verifies hierarchy isolation. The service is destroyed with the CI
-job.
+the RLS command separately re-verifies hierarchy isolation, and the authorization command verifies
+membership decisions, authorization-table RLS, and trusted context establishment. The service is
+destroyed with the CI job.
 
 ## Runtime Variables
 

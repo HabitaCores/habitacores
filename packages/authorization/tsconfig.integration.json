@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "paths": {
+      "@habitacores/auth": ["../auth/src/index.ts"],
+      "@habitacores/database/runtime": ["../database/src/runtime/index.ts"],
+      "@habitacores/domain": ["../domain/src/index.ts"],
+      "pg": ["../database/node_modules/@types/pg"],
+      "vitest": ["node_modules/vitest"]
+    },
+    "rootDir": "../..",
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "../../tests/integration/database-authorization.integration.test.ts"]
+}

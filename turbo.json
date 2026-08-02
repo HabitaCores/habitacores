@@ -20,6 +20,7 @@
       "outputs": ["coverage/**"]
     },
     "test:unit": {
+      "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
     "test:integration": {
@@ -27,6 +28,10 @@
       "env": ["TEST_DATABASE_URL"]
     },
     "test:rls": {
+      "cache": false,
+      "env": ["TEST_DATABASE_URL"]
+    },
+    "test:authorization": {
       "cache": false,
       "env": ["TEST_DATABASE_URL"]
     },

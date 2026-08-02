@@ -23,8 +23,13 @@ const EXPECTED_TABLES = [
   'communities',
   'external_identity_links',
   'floors',
+  'membership_role_assignments',
+  'organization_memberships',
   'organizations',
+  'permissions',
   'properties',
+  'role_permissions',
+  'roles',
   'units',
   'users',
 ];
@@ -59,7 +64,7 @@ afterAll(async () => {
 });
 
 describe('database runtime integration foundation', () => {
-  it('applies the committed migration on PostgreSQL 18 and creates all hierarchy tables', async () => {
+  it('applies every committed migration on PostgreSQL 18 and creates all tables', async () => {
     const version = await verificationPool.query<{ server_version: string }>('show server_version');
     const tables = await verificationPool.query<{ table_name: string }>(
       `select table_name
