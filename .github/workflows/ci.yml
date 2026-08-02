@@ -1,0 +1,62 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+
+      - name: Install approved pnpm version
+        run: npm install --global pnpm@11.18.0
+
+      - name: Verify toolchain
+        run: |
+          node --version
+          npm --version
+          pnpm --version
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate repository policy
+        run: pnpm repository:policy
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Run lint checks
+        run: pnpm lint
+
+      - name: Run type checks
+        run: pnpm typecheck
+
+      - name: Run unit tests
+        run: pnpm test:unit
+
+      - name: Build workspaces
+        run: pnpm build
