@@ -50,6 +50,9 @@ jobs:
       - name: Validate repository policy
         run: pnpm repository:policy
 
+      - name: Validate workspace boundaries
+        run: pnpm workspace:boundaries
+
       - name: Check formatting
         run: pnpm format:check
 
