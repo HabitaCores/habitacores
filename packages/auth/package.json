@@ -23,6 +23,8 @@
     "clean": "rm -rf dist",
     "lint": "eslint src --max-warnings=0",
     "test:unit": "vitest run",
+    "test:session": "vitest run src/session-security.test.ts",
+    "test:mfa": "vitest run src/mfa-foundation.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

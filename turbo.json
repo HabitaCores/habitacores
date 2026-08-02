@@ -35,6 +35,14 @@
       "cache": false,
       "env": ["TEST_DATABASE_URL"]
     },
+    "test:session": {
+      "cache": false,
+      "env": ["TEST_DATABASE_URL"]
+    },
+    "test:mfa": {
+      "cache": false,
+      "env": ["TEST_DATABASE_URL"]
+    },
     "clean": {
       "cache": false
     }
