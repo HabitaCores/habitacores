@@ -23,7 +23,8 @@
       "outputs": ["coverage/**"]
     },
     "test:integration": {
-      "cache": false
+      "cache": false,
+      "env": ["TEST_DATABASE_URL"]
     },
     "clean": {
       "cache": false
