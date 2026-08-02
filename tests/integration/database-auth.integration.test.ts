@@ -131,7 +131,7 @@ describe('authentication identity database model', () => {
     );
 
     expect(tables.rows.map(({ table_name }) => table_name)).toEqual([...IDENTITY_TABLES]);
-    expect(migrations.rows[0]?.count).toBe('4');
+    expect(migrations.rows[0]?.count).toBe('5');
   });
 
   it('accepts UUIDv7 records and rejects invalid UUID versions and enum values', async () => {

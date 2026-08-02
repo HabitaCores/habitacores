@@ -4,6 +4,10 @@ import { type Brand, InvalidUuidV7Error, isUuidV7 } from '@habitacores/domain';
 
 export type UserId = Brand<string, 'UserId'>;
 export type IdentityLinkId = Brand<string, 'IdentityLinkId'>;
+export type SessionId = Brand<string, 'SessionId'>;
+export type SessionTokenId = Brand<string, 'SessionTokenId'>;
+export type MfaChallengeId = Brand<string, 'MfaChallengeId'>;
+export type TotpEnrollmentId = Brand<string, 'TotpEnrollmentId'>;
 
 function parseIdentityId<Identifier extends string>(value: string, type: string): Identifier {
   if (!isUuidV7(value)) {
@@ -20,6 +24,15 @@ export function parseUserId(value: string): UserId {
 export function parseIdentityLinkId(value: string): IdentityLinkId {
   return parseIdentityId<IdentityLinkId>(value, 'IdentityLinkId');
 }
+
+export const parseSessionId = (value: string): SessionId =>
+  parseIdentityId<SessionId>(value, 'SessionId');
+export const parseSessionTokenId = (value: string): SessionTokenId =>
+  parseIdentityId<SessionTokenId>(value, 'SessionTokenId');
+export const parseMfaChallengeId = (value: string): MfaChallengeId =>
+  parseIdentityId<MfaChallengeId>(value, 'MfaChallengeId');
+export const parseTotpEnrollmentId = (value: string): TotpEnrollmentId =>
+  parseIdentityId<TotpEnrollmentId>(value, 'TotpEnrollmentId');
 
 function generateUuidV7(): string {
   const bytes = randomBytes(16);
@@ -53,5 +66,19 @@ export function createUuidV7IdentityIdGenerator(): IdentityIdGenerator {
   return {
     createUserId: () => parseUserId(generateUuidV7()),
     createIdentityLinkId: () => parseIdentityLinkId(generateUuidV7()),
+  };
+}
+
+export interface SecurityIdGenerator {
+  createSessionId(): SessionId;
+  createMfaChallengeId(): MfaChallengeId;
+  createTotpEnrollmentId(): TotpEnrollmentId;
+}
+
+export function createUuidV7SecurityIdGenerator(): SecurityIdGenerator {
+  return {
+    createSessionId: () => parseSessionId(generateUuidV7()),
+    createMfaChallengeId: () => parseMfaChallengeId(generateUuidV7()),
+    createTotpEnrollmentId: () => parseTotpEnrollmentId(generateUuidV7()),
   };
 }

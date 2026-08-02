@@ -20,6 +20,12 @@ const AUTHORIZATION_TABLES = [
   'membership_role_assignments',
 ] as const;
 const GLOBAL_REFERENCE_TABLES = ['permissions'] as const;
+const SECURITY_TABLES = [
+  'authentication_sessions',
+  'totp_enrollments',
+  'mfa_recovery_codes',
+  'mfa_challenges',
+] as const;
 
 export function createRuntimeTestDatabaseUrl(administrativeDatabaseUrl: string): string {
   const url = new URL(administrativeDatabaseUrl);
@@ -60,6 +66,9 @@ export async function provisionRuntimeTestRole(administrativePool: Pool): Promis
   );
   await administrativePool.query(
     `grant select on table ${GLOBAL_REFERENCE_TABLES.join(', ')} to ${RUNTIME_TEST_ROLE}`,
+  );
+  await administrativePool.query(
+    `grant select, insert, update, delete on table ${SECURITY_TABLES.join(', ')} to ${RUNTIME_TEST_ROLE}`,
   );
 }
 

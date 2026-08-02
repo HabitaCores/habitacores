@@ -10,4 +10,5 @@ export * from './errors.js';
 export * from './identifiers.js';
 export * from './permission-code.js';
 export * from './repository.js';
+export * from './session-authorization.js';
 export * from './types.js';

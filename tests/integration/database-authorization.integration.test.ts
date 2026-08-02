@@ -165,7 +165,7 @@ describe('authorization schema and constraints', () => {
       'select count(*) from drizzle.__drizzle_migrations',
     );
     expect(tables.rows.map((row) => row.table_name)).toEqual([...AUTHORIZATION_TABLES]);
-    expect(migrations.rows[0]?.count).toBe('4');
+    expect(migrations.rows[0]?.count).toBe('5');
   });
 
   it('seeds the provisional non-wildcard permission vocabulary read-only for runtime', async () => {

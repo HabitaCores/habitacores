@@ -15,3 +15,9 @@ export {
   rolePermissions,
   roles,
 } from './authorization.js';
+export {
+  authenticationSessions,
+  mfaChallenges,
+  mfaRecoveryCodes,
+  totpEnrollments,
+} from './security.js';
