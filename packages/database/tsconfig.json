@@ -4,5 +4,11 @@
     "noEmit": true,
     "rootDir": "."
   },
-  "include": ["drizzle.config.ts", "eslint.config.mjs", "src/**/*.ts"]
+  "include": [
+    "drizzle.config.ts",
+    "eslint.config.mjs",
+    "scripts/**/*.ts",
+    "src/**/*.ts",
+    "vitest.integration.config.ts"
+  ]
 }
