@@ -8,6 +8,13 @@
       "when": 1785691379656,
       "tag": "0000_initial_tenancy",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1785694311528,
+      "tag": "0001_organization_rls",
+      "breakpoints": true
     }
   ]
 }

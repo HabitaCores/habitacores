@@ -9,6 +9,7 @@
     "eslint.config.mjs",
     "scripts/**/*.ts",
     "src/**/*.ts",
-    "vitest.integration.config.ts"
+    "vitest.integration.config.ts",
+    "vitest.rls.config.ts"
   ]
 }
