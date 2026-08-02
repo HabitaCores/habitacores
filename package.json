@@ -19,7 +19,8 @@
     "test:unit": "turbo run test:unit",
     "test:integration": "turbo run test:integration",
     "typecheck": "turbo run typecheck",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "clean": "turbo run clean && rm -rf node_modules",
+    "repository:policy": "node scripts/check-repository-policy.mjs"
   },
   "devDependencies": {
     "prettier": "^3.0.0",
