@@ -1,0 +1,8 @@
+{
+  "extends": "@habitacores/config/tsconfig/node-library.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": ["drizzle.config.ts", "eslint.config.mjs", "src/**/*.ts"]
+}

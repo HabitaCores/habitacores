@@ -20,6 +20,8 @@
     "test:integration": "turbo run test:integration",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
+    "db:check": "pnpm --filter @habitacores/database db:check",
+    "db:generate": "pnpm --filter @habitacores/database db:generate",
     "repository:policy": "node scripts/check-repository-policy.mjs",
     "workspace:boundaries": "node scripts/check-workspace-boundaries.mjs"
   },

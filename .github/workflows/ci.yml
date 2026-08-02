@@ -53,6 +53,9 @@ jobs:
       - name: Validate workspace boundaries
         run: pnpm workspace:boundaries
 
+      - name: Validate database migration history
+        run: pnpm db:check
+
       - name: Check formatting
         run: pnpm format:check
 
