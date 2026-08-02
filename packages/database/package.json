@@ -30,10 +30,12 @@
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "db:check": "drizzle-kit check --config=drizzle.config.ts",
+    "db:rls:check": "node ../../scripts/check-rls-migration.mjs",
     "db:generate": "drizzle-kit generate --config=drizzle.config.ts --name=initial_tenancy",
     "db:migrate:test": "tsx scripts/migrate-test-database.ts",
-    "lint": "cd ../.. && eslint --config packages/database/eslint.config.mjs packages/database/src packages/database/scripts packages/database/drizzle.config.ts packages/database/vitest.integration.config.ts tests/integration/database-runtime.integration.test.ts --max-warnings=0",
+    "lint": "cd ../.. && eslint --config packages/database/eslint.config.mjs packages/database/src packages/database/scripts packages/database/drizzle.config.ts packages/database/vitest.integration.config.ts packages/database/vitest.rls.config.ts tests/integration --max-warnings=0",
     "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:rls": "vitest run --config vitest.rls.config.ts",
     "test:unit": "vitest run",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.integration.json"
   },

@@ -48,8 +48,11 @@ export function readIsolatedTestDatabaseUrl(
 }
 
 export async function resetIsolatedTestDatabase(pool: Pool): Promise<void> {
+  await pool.query('drop schema if exists drizzle cascade');
+  await pool.query('drop schema if exists habitacores cascade');
   await pool.query('drop schema if exists public cascade');
-  await pool.query('create schema public');
+  await pool.query('create schema public authorization current_user');
+  await pool.query('revoke create on schema public from public');
 }
 
 export async function prepareIsolatedTestDatabase(databaseUrl: string): Promise<Pool> {
