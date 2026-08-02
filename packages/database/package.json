@@ -8,6 +8,9 @@
   "files": [
     "dist"
   ],
+  "browser": {
+    "./dist/runtime/index.js": false
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -16,6 +19,11 @@
     "./schema": {
       "types": "./dist/schema/index.d.ts",
       "default": "./dist/schema/index.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime/index.d.ts",
+      "node": "./dist/runtime/index.js",
+      "default": "./dist/runtime/index.js"
     }
   },
   "scripts": {
@@ -23,9 +31,11 @@
     "clean": "rm -rf dist",
     "db:check": "drizzle-kit check --config=drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config=drizzle.config.ts --name=initial_tenancy",
-    "lint": "eslint src drizzle.config.ts --max-warnings=0",
+    "db:migrate:test": "tsx scripts/migrate-test-database.ts",
+    "lint": "cd ../.. && eslint --config packages/database/eslint.config.mjs packages/database/src packages/database/scripts packages/database/drizzle.config.ts packages/database/vitest.integration.config.ts tests/integration/database-runtime.integration.test.ts --max-warnings=0",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:unit": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.integration.json"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",
@@ -34,9 +44,11 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@habitacores/config": "workspace:*",
+    "@types/node": "^24.13.3",
     "@types/pg": "^8.20.3",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.39.5",
+    "tsx": "^4.23.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.65.0",
     "vitest": "^4.1.10"
