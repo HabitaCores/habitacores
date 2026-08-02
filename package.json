@@ -22,6 +22,7 @@
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
     "db:check": "pnpm --filter @habitacores/database db:check",
+    "db:auth:check": "pnpm --filter @habitacores/database db:auth:check",
     "db:rls:check": "pnpm --filter @habitacores/database db:rls:check",
     "db:generate": "pnpm --filter @habitacores/database db:generate",
     "db:migrate:test": "pnpm --filter @habitacores/database db:migrate:test",

@@ -5,7 +5,10 @@ export default defineConfig({
   test: {
     fileParallelism: false,
     hookTimeout: 30_000,
-    include: ['tests/integration/database-runtime.integration.test.ts'],
+    include: [
+      'tests/integration/database-auth.integration.test.ts',
+      'tests/integration/database-runtime.integration.test.ts',
+    ],
     testTimeout: 30_000,
   },
 });

@@ -1,0 +1,42 @@
+{
+  "name": "@habitacores/auth",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Server-side authentication identity boundary and Habitacores user model.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "browser": {
+    "./dist/index.js": false
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --max-warnings=0",
+    "test:unit": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@habitacores/domain": "workspace:*",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@habitacores/config": "workspace:*",
+    "@types/node": "^24.13.3",
+    "@types/pg": "^8.20.3",
+    "eslint": "^9.39.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  }
+}

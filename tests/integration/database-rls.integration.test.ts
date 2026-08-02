@@ -284,9 +284,11 @@ describe('PostgreSQL organization row-level security', () => {
     const grants = await administrativePool.query<{ privilege_type: string; table_name: string }>(
       `select table_name, privilege_type
        from information_schema.role_table_grants
-       where grantee = $1 and table_schema = 'public'
+       where grantee = $1
+         and table_schema = 'public'
+         and table_name = any($2::text[])
        order by table_name, privilege_type`,
-      [RUNTIME_TEST_ROLE],
+      [RUNTIME_TEST_ROLE, TABLES],
     );
     expect(grants.rows).toHaveLength(TABLES.length * 4);
     expect(new Set(grants.rows.map(({ privilege_type }) => privilege_type))).toEqual(

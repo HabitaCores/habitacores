@@ -73,6 +73,9 @@ jobs:
       - name: Validate row-level security migration
         run: pnpm db:rls:check
 
+      - name: Validate authentication identity migration
+        run: pnpm db:auth:check
+
       - name: Check formatting
         run: pnpm format:check
 

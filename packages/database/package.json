@@ -30,6 +30,7 @@
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "db:check": "drizzle-kit check --config=drizzle.config.ts",
+    "db:auth:check": "node ../../scripts/check-auth-migration.mjs",
     "db:rls:check": "node ../../scripts/check-rls-migration.mjs",
     "db:generate": "drizzle-kit generate --config=drizzle.config.ts --name=initial_tenancy",
     "db:migrate:test": "tsx scripts/migrate-test-database.ts",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@habitacores/auth": "workspace:*",
     "@habitacores/config": "workspace:*",
     "@types/node": "^24.13.3",
     "@types/pg": "^8.20.3",
